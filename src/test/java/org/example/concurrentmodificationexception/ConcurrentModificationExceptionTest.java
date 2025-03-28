@@ -48,4 +48,11 @@ class ConcurrentModificationExceptionTest {
 
     futures.forEach(CompletableFuture::join);
   }
+
+  @Test
+  void authorizeReturnObjectWorks() throws Exception {
+      this.mockMvc.perform(get("/model")
+          .accept(MediaType.APPLICATION_JSON)
+          .with(user("user"))).andExpect(status().is5xxServerError());
+  }
 }
